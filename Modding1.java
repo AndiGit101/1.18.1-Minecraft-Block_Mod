@@ -7,6 +7,8 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
+
+    
 public final class Modding1 extends JavaPlugin implements Listener {
 
     @Override
@@ -29,18 +31,17 @@ public final class Modding1 extends JavaPlugin implements Listener {
 
 
     @EventHandler
-    public void breakBlock(BlockBreakEvent e)
-    {
-        int times = 0;
-        if(e.getBlock().getBlockData().getMaterial() == Material.DIRT)
-        {
-            System.out.println("Bedrok broken");
-            System.out.println(times);
-            times++;
-        }
+    public void breakBlock(BlockBreakEvent e) throws InterruptedException {
 
-    //Start plugin(If the player breaks a block, then it will drop a radnom item, will gor from there)
+        Player p = (Player)e.getPlayer();
 
+        e.getPlayer().sendMessage("I broke a block.");
+        Thread.sleep(2000);
+        e.getPlayer().sendMessage("This executes after 2 seconds");
+
+        e.getBlock().setType(Material.DIAMOND);
+
+        e.getPlayer().sendMessage("DIAMONDS");
 
     }
 }
